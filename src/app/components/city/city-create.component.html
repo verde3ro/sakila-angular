@@ -1,0 +1,23 @@
+<div style="width: 500px; margin: auto;">
+  <div>
+    <div *ngIf="!submitted">
+      <form>
+        <div class="form-group">
+          <label for="city">* Nombre Ciudad:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            required
+            [(ngModel)]="nombre"
+            name="city"/>
+        </div>
+        <button (click)="guardar()" class="btn btn-success">Guardar</button>
+      </form>
+    </div>
+
+    <div *ngIf="submitted">
+
+    </div>
+  </div>
+</div>
