@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/models/city.model';
+import {CityService} from 'src/app/services/city.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class CityCreateComponent implements OnInit {
   public nombre = '';
   public submitted = false;
 
-  constructor() {
+  constructor(private cityService: CityService) {
     console.log(this.nombre);
   }
 
@@ -22,8 +23,22 @@ export class CityCreateComponent implements OnInit {
   }
 
   guardar(): void {
-    // this.city = new City(this.nombre, new Date().toISOString(), 2, 'AC');
     console.log(this.nombre);
+    this.city = new City(this.nombre, new Date().toISOString(), 2, 'AC');
+
+    console.log(this.city);
+
+    this.cityService.crear(this.city) // Manejo de obervable
+    .subscribe(
+      response => { // esto es si no falla
+        console.log('Resultado');
+        console.log(response);
+        this.submitted = true;
+      },
+      err => { // esto es si ocurre un error
+        console.log(err.error);
+      }
+    );
   }
 
 }

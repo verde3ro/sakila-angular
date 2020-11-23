@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// nuestros compentes
+// nuestros compenentes
 import { HomeComponent } from './components/home.component';
 import { CityCreateComponent } from './components/city/city-create.component';
 
@@ -18,7 +19,8 @@ import { CityCreateComponent } from './components/city/city-create.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
