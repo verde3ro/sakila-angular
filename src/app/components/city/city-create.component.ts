@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { City } from 'src/app/models/city.model';
 import {CityService} from 'src/app/services/city.service';
 
@@ -12,13 +12,15 @@ import {CityService} from 'src/app/services/city.service';
 })
 export class CityCreateComponent implements OnInit {
 
-  public city: City | undefined;
+  public city!: City;
   public nombre = '';
   public submitted = false;
+  public id = 0;
 
   constructor(
     private cityService: CityService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
     ) {
     console.log(this.nombre);
   }
@@ -27,7 +29,7 @@ export class CityCreateComponent implements OnInit {
     const cityId = this.activateRoute.snapshot.params.id;
 
     if (cityId !== undefined) {
-          console.log(cityId);
+          this.obtenerCiudad(cityId);
     }
   }
 
@@ -37,25 +39,41 @@ export class CityCreateComponent implements OnInit {
 
     console.log(this.city);
 
-    this.cityService.crear(this.city) // Manejo de obervable
-    .subscribe(
-      response => { // esto es si no falla
-        console.log('Resultado');
-        console.log(response);
-        this.submitted = true;
-      },
-      err => { // esto es si ocurre un error
-        console.log(err.error);
-      }
-    );
+    if (this.id === 0) {
+      this.cityService.crear(this.city) // Manejo de obervable
+      .subscribe(
+        response => { // esto es si no falla
+          console.log('guarda');
+          console.log(response);
+          this.submitted = true;
+        },
+        err => { // esto es si ocurre un error
+          console.log(err.error);
+        }
+     );
+    } else {
+      this.cityService.actualizar(this.id, this.city)
+      .subscribe(
+        response => { // esto es si no falla
+          console.log('Actualiza');
+          console.log(response);
+          this.submitted = true;
+        },
+        err => { // esto es si ocurre un error
+          console.log(err.error);
+        }
+      );
+    }
   }
 
-  obtenerCiudad(cityId: number) {
+  obtenerCiudad(cityId: number): void {
     this.cityService.obtenerPorId(cityId)
     .subscribe(
       resp => {
         this.city = resp;
+        console.log(this.city);
 
+        this.id = this.city.cityId || 0;
         this.nombre = this.city.city;
       },
       err => {
@@ -67,6 +85,10 @@ export class CityCreateComponent implements OnInit {
   nueva(): void {
     this.submitted = false;
     this.nombre = '';
+  }
+
+  regresaListado(): void {
+    this.router.navigateByUrl(`list`);
   }
 
 }

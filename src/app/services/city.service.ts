@@ -24,4 +24,12 @@ export class CityService {
     return this.httpClient.get(`${baseURL}/${id}`);
   }
 
+  actualizar(id: number, city: City): Observable<any> {
+    return this.httpClient.put(`${baseURL}/${id}`, city);
+  }
+
+  borrar(id: number): Observable<any> {
+    return this.httpClient.delete(`${baseURL}/${id}`);
+  }
+
 }

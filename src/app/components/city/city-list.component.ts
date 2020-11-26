@@ -45,4 +45,16 @@ export class CityListComponent implements OnInit {
     this.router.navigateByUrl(`create/${cityId}`); // Redirecciona al rura correspondiente
   }
 
+  borrarCiudad(cityId: number | undefined = 0): void {
+    this.cityService.borrar(cityId)
+    .subscribe(
+      resp => {
+        this.obtenerTodos(); // recarga tabla
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 }

@@ -19,6 +19,8 @@
     <div *ngIf="submitted">
       <h3>¡Se guardo la ciudad con éxito!</h3>
       <button class="btn btn-info" (click)="nueva()">Nueva Ciudad</button>
+      &nbsp;
+      <button *ngIf="id > 0" class="btn btn-primary" (click)="regresaListado()">Regresa Listado</button>
     </div>
   </div>
 </div>
