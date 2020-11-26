@@ -12,8 +12,16 @@ export class CityService {
 
   constructor(private httpClient: HttpClient) { } // Hacemos uso de la inyección de depencias CDI
 
+  obtenerTodos(size: number): Observable<any> {
+    return this.httpClient.get(`${baseURL}?size=${size}`);
+  }
+
   crear(city: City): Observable<any> {
     return this.httpClient.post(baseURL, city);
+  }
+
+  obtenerPorId(id: number): Observable<any> {
+    return this.httpClient.get(`${baseURL}/${id}`);
   }
 
 }

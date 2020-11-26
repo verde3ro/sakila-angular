@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 // nuestros compenentes
 import { HomeComponent } from './components/home.component';
 import { CityCreateComponent } from './components/city/city-create.component';
+import { CityListComponent } from './components/city/city-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CityCreateComponent
+    CityCreateComponent,
+    CityListComponent
   ],
   imports: [
     BrowserModule,
