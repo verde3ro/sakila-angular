@@ -57,4 +57,8 @@ export class CityListComponent implements OnInit {
     );
   }
 
+  detalleCiudad(cityId: number | undefined = 0): void {
+    this.router.navigateByUrl(`detail/${cityId}`);
+  }
+
 }

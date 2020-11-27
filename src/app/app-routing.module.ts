@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CityCreateComponent } from './components/city/city-create.component';
+import { CityDetailComponent } from './components/city/city-detail.component';
 import { CityListComponent } from './components/city/city-list.component';
 import { HomeComponent } from './components/home.component';
 
@@ -9,7 +10,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'create', component: CityCreateComponent},
   {path: 'create/:id', component: CityCreateComponent},
-  {path: 'list', component: CityListComponent}
+  {path: 'list', component: CityListComponent},
+  {path: 'detail/:id', component: CityDetailComponent}
 ];
 
 @NgModule({
